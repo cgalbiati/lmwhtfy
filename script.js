@@ -1,4 +1,5 @@
 const wowheadUrl = 'https://tbc.wowhead.com/search?q='
+const waitMult = 150
 
 console.log('script.js')
 
@@ -30,16 +31,33 @@ function getSearchTermFromUrl() {
     return params.q
 }
 
+function timeout(cb, time=10) {
+    setTimeout(time, cb)
+}
+
 function redirectToWowHeadIfSearch(searchTerm) {
     
     console.log('searchTerm', searchTerm)
     if (searchTerm) {
+        console.log('redirecting to ', wowheadUrl + searchTerm)
         location.assign(wowheadUrl + searchTerm)
     }
 }
 
 function addSearchToInput(searchTerm) {
     console.log('adding search to input', searchTerm)
+    const input2 = document.getElementById('search-input')
+    console.log('input start', input2.value)
+    input2.value = 'hello '
+    searchTerm.split('').forEach((letter, idx) => {
+        console.log('letter timeout', letter, idx, waitMult * (idx + 1))
+        setTimeout(() => {
+            console.log('adding letter')
+            const input = document.getElementById('search-input')
+            const inputText = input.value
+            input.value = inputText + letter
+        }, waitMult * (idx + 1))
+    })
 }
 
 function runSearchActionsIfSearch() {
@@ -47,7 +65,11 @@ function runSearchActionsIfSearch() {
     if (searchTerm) {
         console.log("this is a search")
         addSearchToInput(searchTerm)
-        redirectToWowHeadIfSearch(searchTerm)
+        setTimeout(() => {
+            console.log('done')
+            redirectToWowHeadIfSearch(searchTerm)
+                },  waitMult * (searchTerm.length + 1))
+        
     }
 }
 
