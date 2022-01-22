@@ -69,10 +69,17 @@ function runSearchActionsIfSearch() {
         
     }
 }
+function handleGo() {
+    const searchTerm = getSearchFromInput()
+    redirectToWowHeadIfSearch(searchTerm)
+}
 
 window.onload = function() {
     console.log('loaded')
     const linkButton = document.getElementById('get-link')
     linkButton.addEventListener("click", makeLink)
+    const goButton = document.getElementById('search-submit')
+    goButton.addEventListener("click", handleGo)
+
     runSearchActionsIfSearch()
 }
