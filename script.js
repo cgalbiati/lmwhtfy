@@ -46,9 +46,6 @@ function redirectToWowHeadIfSearch(searchTerm) {
 
 function addSearchToInput(searchTerm) {
     console.log('adding search to input', searchTerm)
-    const input2 = document.getElementById('search-input')
-    console.log('input start', input2.value)
-    input2.value = 'hello '
     searchTerm.split('').forEach((letter, idx) => {
         console.log('letter timeout', letter, idx, waitMult * (idx + 1))
         setTimeout(() => {
