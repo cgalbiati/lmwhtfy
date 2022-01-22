@@ -1,15 +1,29 @@
 <!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>lmwhtfy</title>
+    <link rel="stylesheet" href="style.css">
+</head>
 <body>
-<main>
-    <div>LMWHTFUY</div>
     <script>const whTooltips = {colorLinks: true, iconizeLinks: true, renameLinks: true};</script>
     <script src="https://wow.zamimg.com/widgets/power.js"></script>
-    <iframe
-            src="https://tbc.wowhead.com/search?q=scarlet+monestary"
-            title="results"
-            width="100%"
-            height="500pt"
-            sandbox="allow-forms allow-modals"
-    ></iframe>
+    <script src="script.js"></script>
+<main>
+    <h2>
+        Here, let me wowhead that for you
+    </h2>
+    <input 
+        id="search-input"
+        type="text"
+    >
+
+    <button id="search-submit">Go!</button> 
+    <div class="get-link-container">  
+        <button id="get-link" onclick="makeLink">Get link</button>
+        <div id="link-container">Share your search: </div>
+    </div> 
+    
+
 </main>
 </body>
