@@ -5,3 +5,30 @@
 .hide {
     display: none;
 }
+
+.content-container {
+    padding: 40pt;
+    width: 100%;
+    min-height: 100vh;
+    background-color: black;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    color: white;
+    font: 14pt "Open Sans",Arial,"Helvetica Neue",Helvetica,sans-serif;
+    text-shadow: 0 1px 1px #10141a,0 1px 3px #10141a,0 2px 5px #10141a;
+}
+h2 {
+   font-size: 28pt; 
+}
+
+.logo {
+    width: 250px;
+    height: 54px;
+    background-image: url(https://wow.zamimg.com/images/logos/tbc-horizontal-logo.webp);
+    object-fit: fill;
+}
+
+body {
+    margin: 0;
+}
