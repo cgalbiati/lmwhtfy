@@ -70,7 +70,7 @@ function runSearchActionsIfSearch() {
         setTimeout(() => {
             console.log('done')
             redirectToWowHeadIfSearch(searchTerm)
-                },  waitMult * (searchTerm.length + 1))
+                }, mouseMoveWait + waitMult * (searchTerm.length + 1))
         
     }
 }
