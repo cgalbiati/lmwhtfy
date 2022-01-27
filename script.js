@@ -1,5 +1,6 @@
 const wowheadUrl = 'https://tbc.wowhead.com/search?q='
 const waitMult = 150
+const mouseMoveWait = 3000
 
 console.log('script.js')
 
@@ -47,20 +48,24 @@ function redirectToWowHeadIfSearch(searchTerm) {
 function addSearchToInput(searchTerm) {
     console.log('adding search to input', searchTerm)
     searchTerm.split('').forEach((letter, idx) => {
-        console.log('letter timeout', letter, idx, waitMult * (idx + 1))
+        console.log('letter timeout', letter, idx, mouseMoveWait + waitMult * (idx + 1))
         setTimeout(() => {
             console.log('adding letter')
             const input = document.getElementById('search-input')
             const inputText = input.value
             input.value = inputText + letter
-        }, waitMult * (idx + 1))
+        }, mouseMoveWait + waitMult * (idx + 1))
     })
+}
+function animateMouseToInput() {
+    document.getElementById("mouse").classList.add("moving-mouse")
 }
 
 function runSearchActionsIfSearch() {
     const searchTerm = getSearchTermFromUrl()
     if (searchTerm) {
         console.log("this is a search")
+        animateMouseToInput()
         addSearchToInput(searchTerm)
         setTimeout(() => {
             console.log('done')

@@ -32,3 +32,29 @@ h2 {
 body {
     margin: 0;
 }
+.mouse {
+    width: 20px;
+    height: 30px;
+    margin-top: -10px;
+}
+
+.moving-mouse {
+    offset-path: path('M20,20 C20,100 200,0 200,100');
+    offset-rotate: 0deg;
+    animation: move 3000ms ease-in-out;
+    
+    background-image: url(./mouse.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+  }
+  
+  @keyframes move {
+    0% {
+      offset-distance: 100%;
+    }
+    100% {
+      offset-distance: 0%;
+    }
+  }
+  
