@@ -1,6 +1,13 @@
 const wowheadUrl = 'https://tbc.wowhead.com/search?q='
 const waitMult = 150
 const mouseMoveWait = 3000
+const moveToCLickWait = 1000
+const pause = 1000
+const pauseBeforeRedirect = 500
+
+function typingWait(len) {
+    return mouseMoveWait + waitMult * (len + 1)
+}
 
 console.log('script.js')
 
@@ -48,17 +55,34 @@ function redirectToWowHeadIfSearch(searchTerm) {
 function addSearchToInput(searchTerm) {
     console.log('adding search to input', searchTerm)
     searchTerm.split('').forEach((letter, idx) => {
-        console.log('letter timeout', letter, idx, mouseMoveWait + waitMult * (idx + 1))
         setTimeout(() => {
-            console.log('adding letter')
             const input = document.getElementById('search-input')
             const inputText = input.value
             input.value = inputText + letter
-        }, mouseMoveWait + waitMult * (idx + 1))
+        }, typingWait(idx))
     })
 }
 function animateMouseToInput() {
     document.getElementById("mouse").classList.add("moving-mouse")
+}
+function setMouseToCursor() {
+    setTimeout(() => {
+        console.log('setting to cursor')
+        const mouse = document.getElementById("mouse")
+        mouse.classList.remove("moving-mouse")
+        mouse.classList.add("cursor")
+
+    }, mouseMoveWait)
+}
+
+function animateMouseToButton(searchTearmLength) {
+    setTimeout(() => {
+        console.log('animating to button')
+        const mouse = document.getElementById("mouse")
+        mouse.classList.remove("cursor")
+        mouse.classList.add("clicking-mouse")
+
+    }, typingWait(searchTearmLength) + pause)
 }
 
 function runSearchActionsIfSearch() {
@@ -66,17 +90,25 @@ function runSearchActionsIfSearch() {
     if (searchTerm) {
         console.log("this is a search")
         animateMouseToInput()
+        setMouseToCursor()
         addSearchToInput(searchTerm)
+        animateMouseToButton(searchTerm.length)
+        clickButton(searchTerm.length)
         setTimeout(() => {
             console.log('done')
             redirectToWowHeadIfSearch(searchTerm)
-                }, mouseMoveWait + waitMult * (searchTerm.length + 1))
+                }, typingWait(searchTerm.length) + pause + moveToCLickWait + pauseBeforeRedirect)
         
     }
 }
 function handleGo() {
     const searchTerm = getSearchFromInput()
     redirectToWowHeadIfSearch(searchTerm)
+}
+function clickButton(searchTearmLength) {
+    setTimeout(() => {
+        document.getElementById("search-submit").classList.add("button-hover")
+    }, typingWait(searchTearmLength) + pause + moveToCLickWait)
 }
 
 window.onload = function() {

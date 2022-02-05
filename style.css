@@ -35,7 +35,8 @@ body {
 .mouse {
     width: 20px;
     height: 30px;
-    margin-top: -10px;
+    top: 210px;
+    position: absolute;
 }
 
 .moving-mouse {
@@ -57,4 +58,35 @@ body {
       offset-distance: 0%;
     }
   }
+
+  .cursor {
+    background-image: url(./cursor.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+  }
+
+  .clicking-mouse {
+    
+    animation: moveclick 1000ms ease-in-out;
+    animation-iteration-count: 1;
+    background-image: url(./mouse.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    top: 255px;
+  }
+
+  @keyframes moveclick {
+    from { transform : translateY(-25px) }
+    to   { transform : translateY(0px) } 
+}
+button {
+    margin: 20px;
+}
+
+.button-hover {
+    background-color: gray;
+}
+  
   
